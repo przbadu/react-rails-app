@@ -1,14 +1,22 @@
 import axios from 'axios';
 import React, { Component } from 'react';
+
 import EmployeeRow from './EmployeeRow';
+import AddEmployee from './AddEmployee';
 
 class EmployeePage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      name: '',
+      email: '',
+      manager: false,
       employees: [],
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.createEmployee = this.createEmployee.bind(this);
   }
 
   componentDidMount() {
@@ -16,6 +24,20 @@ class EmployeePage extends Component {
       .get('/employees.json')
       .then(response => this.setState({ employees: response.data }))
       .catch(error => console.log(error));
+  }
+
+  onChange(e) {
+    var value = e.target.value;
+
+    if (e.target.name === 'manager') {
+      value = !this.state.manager;
+    }
+
+    this.setState({ [e.target.name]: value });
+  }
+
+  createEmployee() {
+    console.log(this.state);
   }
 
   render() {
@@ -33,6 +55,11 @@ class EmployeePage extends Component {
             </tr>
           </thead>
           <tbody>
+            <AddEmployee
+              employee={this.state.employee}
+              onChange={this.onChange}
+              onClick={this.createEmployee}
+            />
             {this.state.employees.map(employee => (
               <EmployeeRow key={employee.id} employee={employee} />
             ))}

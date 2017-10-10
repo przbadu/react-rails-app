@@ -13,14 +13,16 @@ gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 gem 'coffee-rails', '~> 4.2'
 gem 'turbolinks', '~> 5'
-gem 'jbuilder', '~> 2.5'
+# gem 'jbuilder', '~> 2.5'
 
 # use latest gem version, prefer exact version
 gem 'react_on_rails', '9.0.0'
+gem 'active_model_serializers', '~> 0.10.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry-rails'
+  gem 'pry-byebug'
 end
 
 group :development do

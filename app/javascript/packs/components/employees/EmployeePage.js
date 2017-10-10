@@ -37,7 +37,21 @@ class EmployeePage extends Component {
   }
 
   createEmployee() {
-    console.log(this.state);
+    const { name, email, manager } = this.state;
+
+    axios
+      .post('/employees.json', {
+        employee: {
+          name,
+          manager,
+        },
+      })
+      .then(response => {
+        console.log(response.data);
+      })
+      .catch(errors => {
+        console.log(errors.response.data);
+      });
   }
 
   render() {

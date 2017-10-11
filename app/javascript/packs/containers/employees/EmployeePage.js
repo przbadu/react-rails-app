@@ -22,7 +22,7 @@ class EmployeePage extends Component {
 
   componentDidMount() {
     axios
-      .get('/api/v1/employees.json')
+      .get('/api/v1/employees')
       .then(response => this.setState({ employees: response.data }))
       .catch(errors => this.setState({ errors: errors.response.data }));
   }
@@ -41,25 +41,37 @@ class EmployeePage extends Component {
     const { name, email, manager } = this.state;
 
     axios
-      .post('/api/v1/employees.json', {
+      .post('/api/v1/employees', {
         employee: {
           name,
+          email,
           manager,
         },
       })
       .then(response => {
-        console.log(response.data);
+        this.setState({
+          employees: [...this.state.employees, response.data],
+          name: '',
+          email: '',
+          manager: '',
+        });
       })
-      .catch(errors => this.setState({ errors: errors.response.data }));
+      .catch(errors => {
+        if (errors.response && errors.response.data) {
+          this.setState({ errors: errors.response.data });
+        } else {
+          this.setState({ errors: errors.message });
+        }
+      });
   }
 
   render() {
-    const { name, email, manager, errors } = this.state;
+    const { employees, name, email, manager, errors } = this.state;
     return (
       <div className="employee-page">
         <h1>Employees</h1>
 
-        <table>
+        <table className="table table-striped">
           <thead>
             <tr>
               <th>Name</th>
@@ -68,6 +80,7 @@ class EmployeePage extends Component {
               <th>Action</th>
             </tr>
           </thead>
+
           <tbody>
             <AddEmployee
               name={name}
@@ -77,7 +90,8 @@ class EmployeePage extends Component {
               onClick={this.createEmployee}
               errors={errors}
             />
-            {this.state.employees.map(employee => (
+
+            {employees.map(employee => (
               <EmployeeRow key={employee.id} employee={employee} />
             ))}
           </tbody>

@@ -10,9 +10,10 @@ function AddEmployee({ name, email, manager, onChange, onClick, errors }) {
           type="text"
           placeholder="Your name"
           onChange={onChange}
+          className="form-control"
         />
         {errors && errors.name ? (
-          <p className="text-alert">{errors.name}</p>
+          <p className="text-danger">{errors.name}</p>
         ) : (
           ''
         )}
@@ -25,7 +26,13 @@ function AddEmployee({ name, email, manager, onChange, onClick, errors }) {
           type="email"
           placeholder="you@example.com"
           onChange={onChange}
+          className="form-control"
         />
+        {errors && errors.email ? (
+          <p className="text-danger">{errors.email}</p>
+        ) : (
+          ''
+        )}
       </td>
 
       <td>

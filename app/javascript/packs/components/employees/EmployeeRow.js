@@ -6,7 +6,7 @@ function EmployeeRow({ employee }) {
     <tr>
       <td>{employee.name}</td>
       <td>{employee.email}</td>
-      <td>{employee.manager}</td>
+      <td>{employee.manager ? <span>&#x2713;</span> : ''}</td>
     </tr>
   );
 }

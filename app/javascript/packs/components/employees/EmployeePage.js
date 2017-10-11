@@ -21,7 +21,7 @@ class EmployeePage extends Component {
 
   componentDidMount() {
     axios
-      .get('/employees.json')
+      .get('/api/v1/employees.json')
       .then(response => this.setState({ employees: response.data }))
       .catch(error => console.log(error));
   }
@@ -40,7 +40,7 @@ class EmployeePage extends Component {
     const { name, email, manager } = this.state;
 
     axios
-      .post('/employees.json', {
+      .post('/api/v1/employees.json', {
         employee: {
           name,
           manager,

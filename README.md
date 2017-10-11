@@ -1,24 +1,16 @@
-# README
+# Employee Manager
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Simple app to learn react on rails.
 
-Things you may want to cover:
 
-* Ruby version
+## Development Emails
 
-* System dependencies
+All development emails will be handled by mailcatcher. Install it and run it.
 
-* Configuration
+```shell
+gem install mailcatcher
+mailcatcher
+```
 
-* Database creation
+Visit http:127.0.0.1080
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

@@ -2,6 +2,17 @@
 
 Simple app to learn react on rails.
 
+## Development setup
+
+```shell
+git clone git@github.com:<username>/react-rails-app.git
+cd react-rails-demo
+bundle && yarn # or bundle && npm install
+gem install foreman
+foreman start Procfile.dev # or Procfile.dev-server
+```
+
+Now visit your app in [localhost:3000](http://localhost:3000)
 
 ## Development Emails
 

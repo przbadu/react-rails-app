@@ -19,6 +19,7 @@ gem 'turbolinks', '~> 5'
 gem 'react_on_rails', '9.0.0'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'devise'
+gem 'pundit'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

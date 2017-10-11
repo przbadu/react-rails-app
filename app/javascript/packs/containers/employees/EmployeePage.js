@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { Component } from 'react';
 
-import EmployeeRow from './EmployeeRow';
-import AddEmployee from './AddEmployee';
+import EmployeeRow from '../../components/employees/EmployeeRow';
+import AddEmployee from '../../components/employees/AddEmployee';
 
 class EmployeePage extends Component {
   constructor(props) {
@@ -13,6 +13,7 @@ class EmployeePage extends Component {
       email: '',
       manager: false,
       employees: [],
+      errors: [],
     };
 
     this.onChange = this.onChange.bind(this);
@@ -23,7 +24,7 @@ class EmployeePage extends Component {
     axios
       .get('/api/v1/employees.json')
       .then(response => this.setState({ employees: response.data }))
-      .catch(error => console.log(error));
+      .catch(errors => this.setState({ errors: errors.response.data }));
   }
 
   onChange(e) {
@@ -49,12 +50,11 @@ class EmployeePage extends Component {
       .then(response => {
         console.log(response.data);
       })
-      .catch(errors => {
-        console.log(errors.response.data);
-      });
+      .catch(errors => this.setState({ errors: errors.response.data }));
   }
 
   render() {
+    const { name, email, manager, errors } = this.state;
     return (
       <div className="employee-page">
         <h1>Employees</h1>
@@ -70,9 +70,12 @@ class EmployeePage extends Component {
           </thead>
           <tbody>
             <AddEmployee
-              employee={this.state.employee}
+              name={name}
+              email={email}
+              manager={manager}
               onChange={this.onChange}
               onClick={this.createEmployee}
+              errors={errors}
             />
             {this.state.employees.map(employee => (
               <EmployeeRow key={employee.id} employee={employee} />

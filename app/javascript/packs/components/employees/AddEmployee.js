@@ -1,6 +1,6 @@
 import React from 'react';
 
-function AddEmployee({ name, email, manager, onChange, onClick }) {
+function AddEmployee({ name, email, manager, onChange, onClick, errors }) {
   return (
     <tr>
       <td>
@@ -11,6 +11,11 @@ function AddEmployee({ name, email, manager, onChange, onClick }) {
           placeholder="Your name"
           onChange={onChange}
         />
+        {errors && errors.name ? (
+          <p className="text-alert">{errors.name}</p>
+        ) : (
+          ''
+        )}
       </td>
 
       <td>

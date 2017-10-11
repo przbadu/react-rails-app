@@ -1,4 +1,4 @@
-class Api::V1::EmployeesController < Api::V1::Base
+class Api::V1::EmployeesController < Api::V1::BaseController
   before_action :set_employee, only: [:show, :update]
 
   def index
@@ -12,7 +12,7 @@ class Api::V1::EmployeesController < Api::V1::Base
   end
 
   def create
-    @employee = Employee.new(employee_params)
+    @employee = current_user.employees.new(employee_params)
     if @employee.save
       render json: @employee, status: :created
     else

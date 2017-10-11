@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_one :profile
   has_one :contact
 
+  has_many :employees
   has_many :addresses
   has_many :user_roles
   has_many :roles, through: :user_roles

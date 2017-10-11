@@ -2,10 +2,12 @@ class Api::V1::EmployeesController < Api::V1::Base
   before_action :set_employee, only: [:show, :update]
 
   def index
-    render json: Employee.all
+    @employee = policy_scope(Employee)
+    render json: @employee
   end
 
   def show
+    authorize @employee
     render json: @employee
   end
 
@@ -19,6 +21,8 @@ class Api::V1::EmployeesController < Api::V1::Base
   end
 
   def update
+    authorize @employee
+
     if @employee.update(employee_params)
       render json: @employee, status: :ok
     else

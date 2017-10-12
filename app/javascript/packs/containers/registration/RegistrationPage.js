@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import StaticModal from '../../components/modal/StaticModal';
 
 class RegistrationPage extends Component {
   constructor(props) {
@@ -6,7 +7,7 @@ class RegistrationPage extends Component {
   }
 
   render() {
-    return <p>Registration page</p>;
+    return <StaticModal />;
   }
 }
 

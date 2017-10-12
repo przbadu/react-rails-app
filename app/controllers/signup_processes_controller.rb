@@ -1,0 +1,2 @@
+class SignupProcessesController < ApplicationController
+end

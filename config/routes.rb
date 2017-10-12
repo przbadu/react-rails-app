@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   devise_for :users
   root 'employees#index'
-  resources :employees
+  resources :employees, only: [:index]
+  resources :signup_processes, only: [:new]
 
   constraints format: :json do
     namespace :api do

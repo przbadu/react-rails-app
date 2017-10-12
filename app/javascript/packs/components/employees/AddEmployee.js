@@ -45,7 +45,9 @@ function AddEmployee({ name, email, manager, onChange, onClick, errors }) {
         />
       </td>
       <td>
-        <button onClick={onClick}>Save</button>
+        <button className="btn btn-sm btn-success" onClick={onClick}>
+          + Add
+        </button>
       </td>
     </tr>
   );

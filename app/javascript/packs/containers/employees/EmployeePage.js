@@ -65,6 +65,10 @@ class EmployeePage extends Component {
       });
   }
 
+  removeEmployee() {
+    console.log('remove employee');
+  }
+
   render() {
     const { employees, name, email, manager, errors } = this.state;
     return (
@@ -92,7 +96,11 @@ class EmployeePage extends Component {
             />
 
             {employees.map(employee => (
-              <EmployeeRow key={employee.id} employee={employee} />
+              <EmployeeRow
+                key={employee.id}
+                employee={employee}
+                removeEmployee={this.removeEmployee}
+              />
             ))}
           </tbody>
         </table>
